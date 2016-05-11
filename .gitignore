@@ -1,0 +1,11 @@
+.bundle/*
+.vagrant/*
+log/*
+shared/*
+test/*
+tmp/*
+README.rdoc
+Vagrantfile
+config/secrets.yml
+config/database.yml
+db/*.sqlite3

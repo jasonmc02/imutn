@@ -1,0 +1,19 @@
+<%= form_for(@portrait) do |f| %>
+  <% if @portrait.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@portrait.errors.count, "error") %> prohibited this portrait from being saved:</h2>
+      <ul>
+      <% @portrait.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.file_field :portrait_image %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

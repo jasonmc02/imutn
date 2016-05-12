@@ -1,12 +1,11 @@
 .git/*
 .bundle/*
 .vagrant/*
-log/*
 shared/*
 test/*
-tmp/*
 README.rdoc
 Vagrantfile
 db/*.sqlite3
 db/*.sqlite3-journal
 ._.DS_Store
+Dockerfile

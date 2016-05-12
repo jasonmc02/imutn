@@ -1,5 +1,4 @@
 class PortraitsController < ApplicationController
-
   def new
     @portrait = Portrait.new
   end

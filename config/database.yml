@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  username: root
+  password: root
+  host: db
+  port: 3306
+
+development:
+  <<: *default
+  database: imutn_development
+
+test:
+  <<: *default
+  database: imutn_test
+
+production:
+  <<: *default
+  database: imutn_production

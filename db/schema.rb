@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20160511021037) do
 
   create_table "entries", force: :cascade do |t|
-    t.string   "entry_ip"
-    t.boolean  "banned",        default: false
-    t.integer  "entry_counter", default: 1
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "entry_ip",      limit: 255
+    t.boolean  "banned",                    default: false
+    t.integer  "entry_counter", limit: 4,   default: 1
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
-  add_index "entries", ["entry_ip"], name: "index_entries_on_entry_ip", unique: true
+  add_index "entries", ["entry_ip"], name: "index_entries_on_entry_ip", unique: true, using: :btree
 
 end

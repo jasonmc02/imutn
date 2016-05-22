@@ -1,5 +1,4 @@
 class PortraitsController < ApplicationController
-
   def new
     @portrait = Portrait.new
   end
@@ -14,6 +13,9 @@ class PortraitsController < ApplicationController
              )
   end
 
+  def entries
+    @entries = Entry.all
+  end
   private
 
     def set_portrait

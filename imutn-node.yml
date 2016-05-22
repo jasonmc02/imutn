@@ -1,0 +1,60 @@
+apiVersion: v1 # database pod
+kind: Pod
+metadata:
+  name: imutn-db
+  labels:
+    app: imutn-db-pod
+spec:
+  containers:
+    - name: db
+      image: mysql:5.6.22
+      env:
+        - name: MYSQL_USER
+          value: root
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+---- # database service to be exposed on the replication controller
+apiVersion: v1
+kind: Service
+metadata: 
+  name: imutn-db
+spec: 
+  selector: 
+    app: imutn-db-pod
+  ports: 
+    - name: imutn-db
+      port: 3306 #external port, targetPort default is the same as port
+---- # replication controller with three pod replicas
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: imutn-webapp
+spec:
+  replicas: 3
+  selector:
+    app: imutn-webapp-rc
+  template:
+    metadata:
+      name: imutn-webapp-rc
+      labels:
+        app: imutn-webapp-rc
+    spec:
+      containers:
+        - name: web
+          image: imutn_web:1.0
+        - name: app
+          image: imutn_app:1.0
+          env:
+            - name: SECRET_KEY_BASE
+              value: neverDoThisPlease
+---- # repl controller to expose the replicas to internet
+apiVersion: v1
+kind: Service
+metadata: 
+  name: imutn-webapp
+spec: 
+  selector: 
+    app: imutn-webapp-rc
+  ports: 
+    - port: 9999 #external port
+      targetPort: 80 #internal port

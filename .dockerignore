@@ -8,3 +8,4 @@ Vagrantfile
 db/*.sqlite3
 db/*.sqlite3-journal
 ._.DS_Store
+Dockerfile
